@@ -15,24 +15,24 @@ parts of the figures on neighbouring triangles match.
 
 The following triangles come with the game:
 
-	                / \                 |                 / \    
-	               /   \                |                /   \   
-	              /HO BW\               |               /a   b\  
-	             /       \              |              /   0   \ 
-	            /    HW   \             |             /    c    \ 
-	            -----------             |             ----------- 
-	          / \    HW   / \           |           / \    c    / \     
-	         /   \       /   \          |          /   \   1   /   \    
-	        /BG HG\BG HG/HO BW\         |         /a   b\b   a/a   b\   
-	       /       \   /       \        |        /   2   \   /   8   \ 
-	      /    HO   \ /    BO   \       |       /    c    \ /    c    \ 
-	      ----------- -----------       |       ----------- ----------- 
-	    / \    BW   / \    HO   / \     |     / \    c    / \    c    / \     
-	   /   \       /   \       /   \    |    /   \   3   /   \   6   /   \    
-	  /BO BG\BG HO/BO HO\BG HG/BW BG\   |   /a   b\b   a/a   b\b   a/a   b\   
-	 /       \   /       \   /       \  |  /   4   \   /   5   \   /   7   \ 
-	/    HO   \ /    BG   \ /    HW   \ | /    c    \ /    c    \ /    c    \ 
-	----------- ----------- ----------- | ----------- ----------- ----------- 
+                    / \                 |                 / \
+                   /   \                |                /   \
+                  /HO BW\               |               /a   b\
+                 /       \              |              /   0   \
+                /    HW   \             |             /    c    \
+                -----------             |             -----------
+              / \    HW   / \           |           / \    c    / \
+             /   \       /   \          |          /   \   1   /   \
+            /BG HG\BG HG/HO BW\         |         /a   b\b   a/a   b\
+           /       \   /       \        |        /   2   \   /   8   \
+          /    HO   \ /    BO   \       |       /    c    \ /    c    \
+          ----------- -----------       |       ----------- -----------
+        / \    BW   / \    HO   / \     |     / \    c    / \    c    / \
+       /   \       /   \       /   \    |    /   \   3   /   \   6   /   \
+      /BO BG\BG HO/BO HO\BG HG/BW BG\   |   /a   b\b   a/a   b\b   a/a   b\
+     /       \   /       \   /       \  |  /   4   \   /   5   \   /   7   \
+    /    HO   \ /    BG   \ /    HW   \ | /    c    \ /    c    \ /    c    \
+    ----------- ----------- ----------- | ----------- ----------- -----------
 
     All triangles (cf. the image above)    Indices of the triangles and sides
 
@@ -68,7 +68,7 @@ solutions can be rotated into three different position.
 
 Just run
 
-	$ python ./the_magic_triangle.py deck_of_cards.csv edge_matches.csv
+    $ python ./the_magic_triangle.py deck_of_cards.csv edge_matches.csv
 
 ----
 
