@@ -75,6 +75,6 @@ Just run
 For the impatient, the solutions can also be found [here](doc/solutions.txt).
 
 [1]: http://www.google.de/search?q=heye+magische+dreieck&prmd=ivns&source=lnms&tbm=isch
-[2]: http://heye-puzzle.de/kategorie/crazy-9/
+[2]: http://heye-puzzle.de/kategorie/crazy9/
 [3]: https://en.wikipedia.org/wiki/Backtracking
 [Heye puzzle]: http://heye-puzzle.de
