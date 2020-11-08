@@ -38,20 +38,12 @@ def shuffle_deck(config, deck):
 	return [rotate(deck[c[0]], c[1]) if c is not None else None for c in config]
 
 
-def is_complete(config, deck):
-	"""Returns true if the configuration contains all cards from the deck, otherwise false."""
-	if config is None:
-		return False
-	else:
-		return None not in config and len(config) == len(deck)
-
-
 def is_solution(config, deck, partial=False):
 	"""Returns true if the configuration is a valid solution, otherwise false. A pair of triangles
 	match, if the body parts  printed on the neighboring sides of the triangles are complements 
 	(head and body), i.e. if they are not equal, and if the colors are the same."""
 	if config is None:
-		print "config is None"
+		print("config is None")
 		return False
 
 	shuffled_deck = shuffle_deck(config, deck)
@@ -107,25 +99,25 @@ def output(config, deck):
 	triangle = """
                 / \    
                /   \   
-              /%s %s\  
-             /   %s   \ 
-            /    %s   \ 
+              /{} {}\  
+             /   {}   \ 
+            /    {}   \ 
             ----------- 
-          / \    %s   / \     
-         /   \   %s   /   \    
-        /%s %s\%s %s/%s %s\   
-       /   %s   \   /   %s   \ 
-      /    %s   \ /    %s   \ 
+          / \    {}   / \     
+         /   \   {}   /   \    
+        /{} {}\{} {}/{} {}\   
+       /   {}   \   /   {}   \ 
+      /    {}   \ /    {}   \ 
       ----------- ----------- 
-    / \    %s   / \    %s   / \     
-   /   \   %s   /   \   %s   /   \    
-  /%s %s\%s %s/%s %s\%s %s/%s %s\   
- /   %s   \   /   %s   \   /   %s   \ 
-/    %s   \ /    %s   \ /    %s   \ 
+    / \    {}   / \    {}   / \     
+   /   \   {}   /   \   {}   /   \    
+  /{} {}\{} {}/{} {}\{} {}/{} {}\   
+ /   {}   \   /   {}   \   /   {}   \ 
+/    {}   \ /    {}   \ /    {}   \ 
 ----------- ----------- ----------- 
-""" % labels
+""".format(*labels)
 
-	msg = "config = %s\ndeck   = %s\n%s" % (config, s, triangle)
+	msg = "config = {}\ndeck   = {}\n{}".format(config, s, triangle)
 
 	return msg
 
@@ -134,15 +126,14 @@ def first(config, deck):
 	"""Generate a first extension of the current configuration; find the first empty element in the 
 	configuration (None), which will be filled with the next free card. If no empty elements exist, 
 	the return value will be None"""
-	try:
-		first_empty = (i for i in range(len(config)) if config[i] == None).next()
-	except StopIteration:
+	first_empty = next((i for i in range(len(config)) if config[i] is None), None)
+	if first_empty is None:
 		return None
 
 	# Find the next free card that can be added to the configuration at the location determined 
 	# above.
 	new_config = config[:]
-	used_cards = [card[0] for card in new_config if card != None]
+	used_cards = [card[0] for card in new_config if card is not None]
 	for i in range(len(deck)):
 		if i not in used_cards:
 			new_config[first_empty] = (i, 0) # Add the i-th card, with no rotation (0)
@@ -151,13 +142,10 @@ def first(config, deck):
 	return new_config
 
 
-def next(config, deck):
+def next_config(config, deck):
 	"""Returns the next possible configuration given the current configuration; will return None if 
 	no next configuration exists."""
-	try:
-		first_empty = (i for i in range(len(config)) if config[i] == None).next()
-	except StopIteration:
-		first_empty = len(deck)
+	first_empty = next((i for i in range(len(config)) if config[i] is None), len(deck))
 
 	# Avoid negative indices
 	last_non_empty = first_empty - 1
@@ -179,7 +167,7 @@ def next(config, deck):
 
 		# Determine the next possible card for testing; ignore all cards
 		# that already have been tested before.
-		used_cards = [card[0] for card in new_config if card != None]
+		used_cards = [card[0] for card in new_config if card is not None]
 		for i in range(current_card, len(deck)):
 			if i not in used_cards:
 				new_config[last_non_empty] = (i, 0) # Add the i-th card, with no rotation (0)
@@ -202,12 +190,12 @@ def backtrack(config, deck):
 		return
 
 	if is_solution(config, deck):
-		print output(config, deck)
+		print(output(config, deck))
 
 	cur = first(config, deck)
-	while cur != None:
+	while cur is not None:
 		backtrack(cur, deck)
-		cur = next(cur, deck)
+		cur = next_config(cur, deck)
 
 
 def read_csv(filename):
